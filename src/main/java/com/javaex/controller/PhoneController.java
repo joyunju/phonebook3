@@ -43,6 +43,7 @@ public class PhoneController {
 		//Dao로 저장하기
 		PhoneDao phoneDao = new PhoneDao();
 		int count = phoneDao.personInsert(personVo);
+		System.out.println(count);
 		
 		//http://localhost:8088/phonebook3/write 호출시 write.jsp 파일 화면 보임
 		return "";
