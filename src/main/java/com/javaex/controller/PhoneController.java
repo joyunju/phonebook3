@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.javaex.dao.PhoneDao;
 import com.javaex.vo.PersonVo;
 
 @Controller
@@ -39,7 +40,10 @@ public class PhoneController {
 		PersonVo personVo = new PersonVo(name, hp, company);
 		System.out.println(personVo);
 		
-		//Dao로 저장하기 
+		//Dao로 저장하기
+		PhoneDao phoneDao = new PhoneDao();
+		int count = phoneDao.personInsert(personVo);
+		
 		//http://localhost:8088/phonebook3/write 호출시 write.jsp 파일 화면 보임
 		return "";
 		//return "/WEB-INF/views/write.jsp";
