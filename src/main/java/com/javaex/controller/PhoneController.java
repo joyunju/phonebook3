@@ -32,9 +32,9 @@ public class PhoneController {
 		System.out.println("PhoneController>write()");
 		
 		//파라미터 꺼내기 
-		System.out.println(name);
-		System.out.println(hp);
-		System.out.println(company);
+//		System.out.println(name);
+//		System.out.println(hp);
+//		System.out.println(company);
 		
 		//vo로 묶기 
 		PersonVo personVo = new PersonVo(name, hp, company);
