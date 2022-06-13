@@ -72,7 +72,7 @@ public class PhoneController {
 		
 		//http://localhost:8088/phonebook3/list 호출시 write.jsp 파일 화면 보임
 		//return "포워드자리";
-		return "redirect:/phonebook3/list";
+		return "redirect:./phonebook3/list";
 		// return "/WEB-INF/views/write.jsp";
 	}
 
