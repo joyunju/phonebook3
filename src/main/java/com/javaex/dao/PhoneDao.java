@@ -67,7 +67,6 @@ public class PhoneDao {
 			String query = ""; // 쿼리문 문자열만들기, ? 주의
 			query += " INSERT INTO person ";
 			query += " VALUES (seq_person_id.nextval, ?, ?, ?) ";
-			query += " order by person_id asc ";
 			// System.out.println(query);
 
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
@@ -107,7 +106,8 @@ public class PhoneDao {
 			query += "         name, ";
 			query += "         hp, ";
 			query += "         company ";
-			query += " from person";
+			query += " from person ";
+			query += " order by person_id asc ";
 
 			if (keword != "" || keword == null) {
 				query += " where name like ? ";
