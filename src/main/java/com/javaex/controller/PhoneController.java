@@ -67,9 +67,12 @@ public class PhoneController {
 		System.out.println(count);
 
 		// 리다이렉트로 처리하기
+		// 리스트로 리다이렉트 시킬 예정 
 		
-		// http://localhost:8088/phonebook3/write 호출시 write.jsp 파일 화면 보임
-		return "포워드자리";
+		
+		//http://localhost:8088/phonebook3/list 호출시 write.jsp 파일 화면 보임
+		//return "포워드자리";
+		return "redirect:/phonebook3/list";
 		// return "/WEB-INF/views/write.jsp";
 	}
 
