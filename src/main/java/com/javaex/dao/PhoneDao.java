@@ -67,6 +67,7 @@ public class PhoneDao {
 			String query = ""; // 쿼리문 문자열만들기, ? 주의
 			query += " INSERT INTO person ";
 			query += " VALUES (seq_person_id.nextval, ?, ?, ?) ";
+			query += " order by person_id asc ";
 			// System.out.println(query);
 
 			pstmt = conn.prepareStatement(query); // 쿼리로 만들기
