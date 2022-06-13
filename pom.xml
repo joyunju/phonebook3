@@ -38,7 +38,7 @@
 			<artifactId>ojdbc8</artifactId>
 			<version>19.3.0.0</version>
 		</dependency>
-		
+
 		<!-- Oracle JDBC 연결 : 윈도우 -->
 		<!-- 
 		<dependency>
@@ -47,6 +47,14 @@
 			<version>11.2.0.4</version>
 		</dependency>
 		-->
+
+		<!-- jstl 라이브러리 추가 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 
 	</dependencies>
 
