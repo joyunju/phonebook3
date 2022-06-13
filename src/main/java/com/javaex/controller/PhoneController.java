@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +27,43 @@ public class PhoneController {
 	// 메소드 - gs
 
 	// 메소드 - 일반
+	// 전화번호 삭제 1 방법 : @PathVariable
+	// @PathVariable : URL에 쿼리스트링 대신 URL패스로 풀어쓰는 방식
+		@RequestMapping(value = "/delete/{no}/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+		public String delete(@PathVariable("no") int num,
+								@PathVariable("id") String id) {
+			System.out.println("PhoneController>delete()");
+			
+			//주소에서 값 꺼내기
+			System.out.println(num);
+			System.out.println(id);
+
+
+			// Dao로 처리하기 (삭제)
+			PhoneDao phoneDao = new PhoneDao();
+			int count = phoneDao.personDelete(num);
+			System.out.println(count);
+
+			return "redirect:/list";
+			// return "";
+		}
+		
+	// 전화번호 삭제 2 방법 
+	@RequestMapping(value = "/delete2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String delete2(@RequestParam("no") int no) {
+		System.out.println("PhoneController>delete()");
+
+		// 파라미터 꺼내기
+		System.out.println(no);
+
+		// Dao로 처리하기 (삭제)
+		PhoneDao phoneDao = new PhoneDao();
+		int count = phoneDao.personDelete(no);
+		System.out.println(count);
+
+		return "redirect:/list";
+		// return "";
+	}
 	
 	// 전화번호 리스트 
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
@@ -43,13 +82,45 @@ public class PhoneController {
 		
 		return "/WEB-INF/views/list.jsp";
 	}
+	// 전화번호 등록1 : @ModelAttribute 방법 | 아래랑 비교해보기 
+		// @ModelAttribute : Http 요청 파라미터를 객체에 담을때 사용
+		// @RequestParam : 파라미터 매핑 -> Http 요청 파라미터를 메소드 파라미터에 넣어주는 어노테이션
+		@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
+		public String write(@ModelAttribute PersonVo personVo) {
+			System.out.println("PhoneController>write()");
+
+			// 파라미터 꺼내기
+//			System.out.println(name);
+//			System.out.println(hp);
+//			System.out.println(company);
+
+			// vo로 묶기
+			//PersonVo personVo = new PersonVo(name, hp, company);
+			System.out.println(personVo);
+			
+			 //파라미터 꺼내기 + vo로 묶기를 DS해서 메소드의 파라미터로 보내준다
+			
+			// Dao로 저장하기
+			PhoneDao phoneDao = new PhoneDao();
+			int count = phoneDao.personInsert(personVo);
+			System.out.println(count);
+
+			// 리다이렉트로 처리하기
+			// 리스트로 리다이렉트 시킬 예정 
+			
+			
+			//http://localhost:8088/phonebook3/list 호출시 write.jsp 파일 화면 보임
+			//return "포워드자리";
+			return "redirect:/list";
+			// return "/WEB-INF/views/write.jsp";
+		}
 	
-	
-	// 전화번호 등록
+	// 전화번호 등록2 : 기존 방법 | 위에랑 비교해보기 
 	// @RequestParam : 파라미터 매핑 -> Http 요청 파라미터를 메소드 파라미터에 넣어주는 어노테이션
-	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
-	public String write(@RequestParam("name") String name, @RequestParam("hp") String hp,
-			@RequestParam("company") String company) {
+	@RequestMapping(value = "/write2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String write2(@RequestParam("name") String name, 
+							@RequestParam("hp") String hp,
+							@RequestParam("company") String company) {
 		System.out.println("PhoneController>write()");
 
 		// 파라미터 꺼내기
@@ -72,7 +143,7 @@ public class PhoneController {
 		
 		//http://localhost:8088/phonebook3/list 호출시 write.jsp 파일 화면 보임
 		//return "포워드자리";
-		return "redirect:./phonebook3/list";
+		return "redirect:/list";
 		// return "/WEB-INF/views/write.jsp";
 	}
 
