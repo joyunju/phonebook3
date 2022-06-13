@@ -32,12 +32,21 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- Oracle JDBC 연결 -->
+		<!-- Oracle JDBC 연결 : mac -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>19.3.0.0</version>
 		</dependency>
+		
+		<!-- Oracle JDBC 연결 : 윈도우 -->
+		<!-- 
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.4</version>
+		</dependency>
+		-->
 
 	</dependencies>
 
@@ -61,4 +70,4 @@
 			</plugin>
 		</plugins>
 	</build>
-</project>project>
+</project>
