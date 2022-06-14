@@ -4,6 +4,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +22,12 @@ import com.javaex.vo.PersonVo;
 public class PhoneController {
 
 	// 필드
-
+	// PhoneDao phoneDao = new PhoneDao();가 밑에 반복으로 쓰이니 공통으로 올려두기
+	//private PhoneDao phoneDao = new PhoneDao();
+	
+	@Autowired
+	private PhoneDao phoneDao; // new PhoneDao(); 주입해줘 
+	
 	// 생성자
 
 	// 메소드 - gs
@@ -40,7 +46,7 @@ public class PhoneController {
 
 
 			// Dao로 처리하기 (삭제)
-			PhoneDao phoneDao = new PhoneDao();
+			//PhoneDao phoneDao = new PhoneDao();
 			int count = phoneDao.personDelete(num);
 			System.out.println(count);
 
@@ -57,7 +63,7 @@ public class PhoneController {
 		System.out.println(no);
 
 		// Dao로 처리하기 (삭제)
-		PhoneDao phoneDao = new PhoneDao();
+		//PhoneDao phoneDao = new PhoneDao();
 		int count = phoneDao.personDelete(no);
 		System.out.println(count);
 
@@ -71,7 +77,7 @@ public class PhoneController {
 		System.out.println("PhoneController>list()");
 		
 		// Dao를 통해서 personList(주소)를 가져온다
-		PhoneDao phoneDao = new PhoneDao();
+		//PhoneDao phoneDao = new PhoneDao();
 		List<PersonVo> personList = phoneDao.getPersonList();
 		//System.out.println();
 		
@@ -80,7 +86,9 @@ public class PhoneController {
 		model.addAttribute("personList", personList);
 		//model.addAttribute("add", 25); model 여러개 담을 수 있음 
 		
-		return "/WEB-INF/views/list.jsp";
+		//return "/WEB-INF/views/list.jsp";
+		// spring-servlet 파일에서 View Resolver 설정해서 아래처럼 주소가 짧아짐 앞에 /WEB-INF/views/이게 붙고 뒤에 .jsp 자동으로 붙여줘서 
+		return "list";
 	}
 	// 전화번호 등록1 : @ModelAttribute 방법 | 아래랑 비교해보기 
 		// @ModelAttribute : Http 요청 파라미터를 객체에 담을때 사용
@@ -101,7 +109,7 @@ public class PhoneController {
 			 //파라미터 꺼내기 + vo로 묶기를 DS해서 메소드의 파라미터로 보내준다
 			
 			// Dao로 저장하기
-			PhoneDao phoneDao = new PhoneDao();
+			//PhoneDao phoneDao = new PhoneDao();
 			int count = phoneDao.personInsert(personVo);
 			System.out.println(count);
 
@@ -133,7 +141,7 @@ public class PhoneController {
 		System.out.println(personVo);
 
 		// Dao로 저장하기
-		PhoneDao phoneDao = new PhoneDao();
+		//PhoneDao phoneDao = new PhoneDao();
 		int count = phoneDao.personInsert(personVo);
 		System.out.println(count);
 
@@ -153,7 +161,10 @@ public class PhoneController {
 		System.out.println("PhoneController>writeForm()");
 		// Dao
 		// http://localhost:8088/phonebook3/writeForm 호출시 writeForm.jsp 파일 화면 보임
-		return "/WEB-INF/views/writeForm.jsp";
+		
+		//return "/WEB-INF/views/writeForm.jsp";
+		return "writeForm";
+		
 	}
 
 	// 테스트 메소드
@@ -167,7 +178,9 @@ public class PhoneController {
 		System.out.println("PhoneController>test()");
 		// Dao
 		// http://localhost:8088/phonebook3/test 호출시 test.jsp 파일 화면 보임
-		return "/WEB-INF/views/test.jsp";
+		
+		//return "/WEB-INF/views/test.jsp";
+		return "test";
 	}
 
 	// 등록 메소드
