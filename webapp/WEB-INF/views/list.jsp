@@ -37,5 +37,7 @@
 		</table>
 		<br>
 	</c:forEach>
+	
+	<a href="./writeForm">전화번호 등록</a>
 </body>
 </html>
