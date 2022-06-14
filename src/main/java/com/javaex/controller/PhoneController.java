@@ -137,9 +137,9 @@ public class PhoneController {
 
 	// 전화번호 삭제 1 방법 : @PathVariable
 	// @PathVariable : URL에 쿼리스트링 대신 URL패스로 풀어쓰는 방식
-	@RequestMapping(value = "/delete/{no}/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String delete(@PathVariable("no") int num, @PathVariable("id") String id) {
-		System.out.println("PhoneController>delete()");
+	@RequestMapping(value = "/delete2/{no}/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String delete2(@PathVariable("no") int num, @PathVariable("id") String id) {
+		System.out.println("PhoneController>delete2()");
 
 		// 주소에서 값 꺼내기
 		System.out.println(num);
@@ -157,8 +157,8 @@ public class PhoneController {
 	}
 
 	// 전화번호 삭제 2 방법
-	@RequestMapping(value = "/delete2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String delete2(@RequestParam("no") int no) {
+	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String delete(@RequestParam("no") int no) {
 		System.out.println("PhoneController>delete()");
 
 		// 파라미터 꺼내기
@@ -169,7 +169,7 @@ public class PhoneController {
 		// int count = phoneDao.personDelete(no);
 		// dao로 저장했던것을 바꿈 -> service를 통해서 삭제한다.
 		int count = phoneService.personDelete(no);
-		System.out.println(count);
+		//System.out.println(count);
 
 		return "redirect:/list";
 		// return "";
